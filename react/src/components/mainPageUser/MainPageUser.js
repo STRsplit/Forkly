@@ -4,13 +4,10 @@ import React, { Component, PropTypes } from 'react'
  */
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import axios from 'axios'
- /**
- * Components
- */
-// import ProfilePageUser from '../profilePageUser/ProfilePageUser'
-// import ViewOwnRecipes from '../viewOwnRecipes/ViewOwnRecipes'
-// import SearchRecipes from '../searchRecipes/SearchRecipes'
-// import ViewSelectedRecipe from '../viewRecipeDetails/ViewRecipeDetails'
+ 
+// Components
+import AddRecipe from '../addRecipe/AddRecipe'
+
  /**
  * Styles
  */
@@ -22,6 +19,7 @@ import IconButton from 'material-ui/IconButton'
 import MenuItem from 'material-ui/MenuItem'
 import FontIcon from 'material-ui/FontIcon'
 import Drawer from 'material-ui/Drawer'
+import AppBar from 'material-ui/AppBar'
 /**
  * Mock Data
  */
@@ -56,7 +54,7 @@ class MainPageUser extends Component {
         <div>
           <Toolbar style={toolbar}>
             <ToolbarGroup>
-              <IconButton tooltip='Show more' onClick={this.handleToggle.bind(this)}>
+              <IconButton tooltip='Open menu' onClick={this.handleToggle.bind(this)}>
                 <ActionHome />
               </IconButton>
               <ToolbarSeparator />
@@ -67,6 +65,10 @@ class MainPageUser extends Component {
             open={this.state.open}
             docked={false}
             onRequestChange={(open) => this.setState({open})}>
+            <AppBar
+              title='Menu'
+              showMenuIconButton={false}
+            />
             <MenuItem onClick={() => this.handleClose('/home')}>Your profile</MenuItem>
             <MenuItem onClick={() => this.handleClose('/home/add')}>Add recipe</MenuItem>
             <MenuItem onClick={() => this.handleClose('/home/search')}>Search recipes</MenuItem>
