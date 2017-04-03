@@ -26,25 +26,26 @@ const styles = {
 class ViewRecipeDetails extends Component {
   constructor(props) {
     super(props)
-    // TODO: Make the image dynamic.
+    
     this.forkThisRecipe = this.forkThisRecipe.bind(this)
     this.handleCompare = this.handleCompare.bind(this)
   }
 
-//   componentDidMount() {
-  //   console.log('component mounted yo')
-  //   // const id = this.props.params.recipeId
-  //   const id = '58e02f58e71032728ea46fcd' //|| this.props.params.id // remove this line and uncomment the one on top when ready to use 
+  /*
+  componentDidMount() {
+    // const id = this.props.params.recipeId
+    const id = '58e02f58e71032728ea46fcd' //|| this.props.params.id // remove this line and uncomment the one on top when ready to use 
+    axios.get(`api/recipes/${id}`)
+    .then(result => {
+      this.setState({
+        recipe: result.data,
+        activeRecipe: result.data, 
+        compareRecipe: result.data
+      }), () => console.log('hello world component will mount')})
+    .catch(err => console.log('ViewRecipeDetails.js - error: ', err))
+  }
+  */
 
-  //   axios.get(`api/recipes/${id}`)
-  //   .then(result => {
-  //     this.setState({
-  //       recipe: result.data,
-  //       activeRecipe: result.data, 
-  //       compareRecipe: result.data
-  //     }), () => console.log('hello world component will mount')})
-  //   .catch(err => console.log('ViewRecipeDetails.js - error: ', err))
-  // }
   forkThisRecipe(recipe){
     this.props.setStateThroughProps(event, {isForking: true, activeRecipe: recipe})
     this.context.router.history.push('/home/add')
@@ -69,10 +70,6 @@ class ViewRecipeDetails extends Component {
       <DualRecipes compare={isComparison} onFork={this.forkThisRecipe} stats={recipe} styles={style.dualRecipesLayout} />
     </div>)
   }
-
-  componentWillMount() {
-    console.log('ViewRecipeDetails this', this)
-  }
   
   shouldComponentUpdate(){
     return true;
@@ -80,16 +77,16 @@ class ViewRecipeDetails extends Component {
   
 
   render() {
-  const { activeRecipe, compareRecipe, isComparison } = this.props.state
- 
-  const hasMounted = !!activeRecipe.name
-  const { name,  _creator, forks, directions, ingredients } = activeRecipe
+    const { activeRecipe, compareRecipe, isComparison } = this.props.state
+   
+    const hasMounted = !!activeRecipe.name
+    const { name,  _creator, forks, directions, ingredients } = activeRecipe
 
-  const recipeDetails = (
-    <IngredientsDirections recipeStats={activeRecipe} />
-  )
+    const recipeDetails = (
+      <IngredientsDirections recipeStats={activeRecipe} />
+    )
 
-  const contentLeft = isComparison ? this.createRecipeCard(compareRecipe, isComparison) : recipeDetails 
+    const contentLeft = isComparison ? this.createRecipeCard(compareRecipe, isComparison) : recipeDetails 
 
     return (
       <div style={style.mainContainer}>

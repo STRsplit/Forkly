@@ -51,10 +51,11 @@ exports.getUsername = function (req, res) {
     res.json(null)
   }
 }
-// O: {originalRecipes, recipes}
+
 // for viewRecipes Component - get all recipes for user
 exports.getUserRecipes = function (req, res) {
-  req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' } //Temporary till login is back
+  // remove this line when fb/login is back
+  req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' } 
   if (req.user) {
     db.User.findById(req.user._id)
     .limit(16) //change the limit if needed
@@ -67,9 +68,28 @@ exports.getUserRecipes = function (req, res) {
   }
 }
 
+exports.getUserData = function (req, res) {
+  // remove this line when fb/login is back
+  req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' } 
+  if (req.user) {
+    db.User.findById(req.user._id)
+    .limit(16) //change the limit if needed
+    .populate('recipes')
+    .populate('originalRecipes')
+    .populate('_creator')
+    .exec(function (err, user) {
+      console.log(user)
+      res.send(user)
+    })
+  } else {
+    res.end()
+  }
+}
+
+
 exports.addRecipe = function (req, res) {
-  // remove this line after testing
-  // req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' }
+  // remove this line when fb/login is back
+  req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' }
   
   if (req.user) {
     const currRecipe = req.body.currentRecipe
@@ -79,7 +99,8 @@ exports.addRecipe = function (req, res) {
       name: currRecipe.recipeName,
       ingredients: currRecipe.ingredients,
       directions: currRecipe.recipeDirections,
-      _creator: req.user._id
+      _creator: req.user._id,
+      image: currRecipe.image // remove this line when multiple uploading of image to the client is done
     })
 
     let originalRecipe = new db.Recipe({
@@ -87,12 +108,11 @@ exports.addRecipe = function (req, res) {
       ingredients: origRecipe.ingredients,
       directions: origRecipe.recipeDirections,
       _creator: req.user._id,
-      // image: origRecipe.image
+      image: origRecipe.image // remove this line when multiple uploading of image to the client is done
     })
-
-    convertToImageFile(currRecipe.image, currentRecipe._id)
-   
-    originalRecipe.image = currentRecipe.image = `./recipes/images/${currentRecipe._id}.png`
+    /* Uncomment when multiple uploading of image to the client is done */
+    // convertToImageFile(currRecipe.image, currentRecipe._id)
+    // originalRecipe.image = currentRecipe.image = `./recipes/images/${currentRecipe._id}.png`
 
     currentRecipe.save()
     .then(newCurrRecipe => {
@@ -134,7 +154,6 @@ exports.addForkedRecipe = function (req, res) {
   }
 }
 
-// new
 exports.getRecipeById = function (req, res) {
   const id = req.body.id || req.params.id
   db.Recipe.findById(id)
