@@ -11,7 +11,6 @@ import AddRecipe from '../addRecipe/AddRecipe'
  /**
  * Styles
  */
-
 import style from './mainPageUser-css'
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar'
 import ActionHome from 'material-ui/svg-icons/action/home'
@@ -30,27 +29,10 @@ class MainPageUser extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      open: false,
-      value: 1,
-      /* Profile Page User */
-      userID: '',
-      userName: '',
-      // recipes: MockData,
-      // originalRecipes: MockData,
-      /* Tab Bar User */
-      selectedView: 'User',
-      selectedRecipeName: '',
-      selectedRecipeMethods: [],
-
-      selectedRecipeIMG: null,
-      activeRecipe: undefined,
-      compareRecipe: undefined,
-      isComparison: false
+      open: false
     }
   }
-  componentDidMount() {
-    console.log('MainPageUser this',this)
-  }
+
   handleToggle () {
     this.setState({open: !this.state.open})
   }

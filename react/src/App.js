@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 /**
  * Utilities
  */
- //Tests
-import RRDOM from 'react-router-dom'
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import $ from 'jquery'
@@ -16,12 +14,10 @@ import MainPageUser from './components/mainPageUser/MainPageUser'
 import MainPageNonUser from './components/mainPageNonUser/MainPageNonUser'
 import LoginPage from './components/loginPage/LoginPage'
 import AddRecipe from './components/addRecipe/AddRecipe'
-// Changes
 import ProfilePageUser from './components/profilePageUser/ProfilePageUser'
 import SearchRecipes from './components/searchRecipes/SearchRecipes'
 import ViewSelectedRecipe from './components/viewRecipeDetails/ViewRecipeDetails'
 import MockData from './components/mainPageUser/MockData'
-// changes
 
 /**
  * Styles
@@ -36,9 +32,6 @@ class App extends Component {
     this.state = {
       username: null,
       currentRecipe: [],
-      /* Changes */
-      open: false,
-      value: 1,
       /* Profile Page User */
       userID: '',
       userName: '',
@@ -53,7 +46,6 @@ class App extends Component {
       compareRecipe: undefined,
       isComparison: false,
       isForking: false
-      /* Changes  */
     }
 
     this.setStateThroughProps = this.setStateThroughProps.bind(this)
@@ -90,7 +82,7 @@ class App extends Component {
 
   setStateThroughProps (event, newStateValue) {
     console.log('setStateThroughProps', newStateValue)
-    event.preventDefault()
+    event ? event.preventDefault() : ''
     this.setState(newStateValue, () => console.log('this.state.activeRecipe'))
   }
 

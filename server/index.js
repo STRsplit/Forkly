@@ -101,18 +101,13 @@ app.post('/searchRecipes', handler.searchRecipes)
 /* * Find all recipes for given user id * */
 app.get('/getAllRecipes', handler.getUserRecipes)
 app.post('/getRecipeById', handler.getRecipeById)
+
+/* Legacy Group */
 app.get('/api/recipes/:id', handler.getRecipeById)
+app.get('/api/users/user', handler.getUserData)
 
 // Unhandled routes
 app.get('/*', (req, res) => res.redirect('/'))
-
-const db = require('../db/index.js')
-var newUser = db.User({
- name: 'Dario',
- provider: 'facebook',
- facebook: { 'id' : '1654608324555955', 'name' : 'Dario AV' },
-})
-newUser.save()
 
 /**
  * Roll out

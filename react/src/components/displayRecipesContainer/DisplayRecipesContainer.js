@@ -41,7 +41,7 @@ class DisplayRecipesContainer extends Component {
               subtitle={<span>by <b>{recipe._creator}</b></span>}
               actionIcon={<IconButton><StarBorder color='white' /></IconButton>}
             >
-              <img src={recipe.img} />
+              <img src={recipe.image} />
             </GridTile>
           ))}
         </GridList>
