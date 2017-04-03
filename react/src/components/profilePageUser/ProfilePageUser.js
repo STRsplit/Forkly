@@ -24,7 +24,7 @@ class ProfilePageUser extends Component {
   componentDidMount () {
     axios.get('/api/users/user')
     .then(result => {
-      console.log('this', this)
+      console.log('ProfilePageUser axios call result.data: ', result.data)
       const { name, _id, recipes, originalRecipes } = result.data
       this.props.setStateThroughProps(null, {
         userID: _id,
