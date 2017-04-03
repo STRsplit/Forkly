@@ -7,7 +7,7 @@ const style = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: '0 10%',
+    padding: '3% 10%',
     alignItems: 'center'
   },
 

@@ -76,22 +76,6 @@ class Login extends React.Component {
         </div>
       )
     }
-    // return (
-    //   <div>
-    //     <h1>Login</h1>
-    //     <form onSubmit={this.handleSubmit}>
-    //       <label>
-    //         Username:
-    //         <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange}/>
-    //       </label>
-    //       <label>
-    //         Password:
-    //         <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}/>
-    //       </label>
-    //       <input type="submit"/>
-    //     </form>
-    //   </div>
-    // )
   }
 }
 
