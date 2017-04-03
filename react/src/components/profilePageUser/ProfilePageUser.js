@@ -25,7 +25,7 @@ class ProfilePageUser extends Component {
     axios.get('/api/users/user')
     .then(result => {
       console.log('this', this)
-      const { name, _id, recipes, originalRecipes,  } = result.data
+      const { name, _id, recipes, originalRecipes } = result.data
       this.props.setStateThroughProps(null, {
         userID: _id,
         username: name,
@@ -39,15 +39,14 @@ class ProfilePageUser extends Component {
 
   render() {
     const { state, setRecipeState, setTabView, setStateThroughProps, renderSelectedRecipe } = this.props
+    const profilePic = 'https://a3-images.myspacecdn.com/images03/1/240e42b5d9ce48a78983961e7fcb3c39/600x600.jpg'
     const orderedRecipes = []
     const forkedRecipes = []
     const usersRecipes = []
 
     state.recipes.forEach(recipe => {
       orderedRecipes.unshift(recipe)
-      usersRecipes.push(recipe)
-      forkedRecipes.push(recipe)
-      // recipe.creator === state.userID ? usersRecipes.push(recipe) : forkedRecipes.push(recipe)
+      recipe._creator === state.userID ? usersRecipes.push(recipe) : forkedRecipes.push(recipe)
     })
 
     return (
@@ -55,13 +54,14 @@ class ProfilePageUser extends Component {
         <div style={dashboard}>
           <div style={leftDashboard}>
             <h2>{state.userID}</h2>
-            <Paper style={profilePic} circle />
+            <div style={{backgroundImage: `url('${profilePic}')`, borderRadius: '50%', width: '200px', height:'200px'}}>
+            </div>
           </div>
           <div style={rightDashboard}>
             <div style={rightDashboard}>
               <Paper style={statsBar} >
 
-                <Paper style={statDetail} >
+                <Paper style={statDetail}>
                   <h4>User's Recipes</h4>
                   <p>{usersRecipes.length}</p>
                 </Paper>

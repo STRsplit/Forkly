@@ -62,6 +62,8 @@ class AddRecipe extends Component {
       .catch(error => {
         console.log(error)
       })
+
+    this.context.router.history.push('/home/viewrecipe')
   }
 
   handleIngredientsChange (ingredientInd, updatedIngredient) {

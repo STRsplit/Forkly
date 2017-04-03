@@ -24,7 +24,8 @@ class AddIngredientsTable extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      alertError: false
+      alertError: false,
+      recipeImage: '' //E: CHANGE
     }
     this.onChange = this.onChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -62,6 +63,7 @@ class AddIngredientsTable extends Component {
 
     reader.onloadend = () => {
       this.props.handleImageChange(reader.result)
+      this.setState({recipeImage: reader.result})
     }
 
     reader.readAsDataURL(file)
@@ -69,7 +71,9 @@ class AddIngredientsTable extends Component {
 
   render () {
     let { name, ingredients, img, directions, forking } = this.props.stats
-    const recipeImage = img || '../../../dist/assets/images/placeHolderIMG.jpg'
+    const recipeImg = img === undefined ? this.state.recipeImage : img
+    const recipeImage = recipeImg === '' ? '../../assets/images/placeHolderIMG.jpg' : recipeImg
+    console.log('RECIPE IMAGE!!!!!!!!!', recipeImage);
 
     const isDisabled = this.props.isDisabled
     const fieldType = isDisabled ? 'ReadOnly' : 'TextField'

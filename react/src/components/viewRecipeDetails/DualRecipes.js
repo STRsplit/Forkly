@@ -20,6 +20,7 @@ class CardExampleWithAvatar extends Component {
   render(){
     const { name,  _creator, forks, directions, ingredients, img } = this.props.stats
     const { compare } = this.props
+    const recIMG = img === undefined ? 'http://www.safexone.com/images/old/default.gif' : img
     const summary = directions ? directions.split().slice(directions.length / 3) : ''
     const recipeContent = compare ? <IngredientsDirections recipeStats={this.props.stats} /> : null
     return (
@@ -30,7 +31,7 @@ class CardExampleWithAvatar extends Component {
         <CardMedia
           overlay={<CardTitle title={name} subtitle={summary + '...'} />}
         >
-          <img src={img} width="240px" />
+          <img src={recIMG} width="240px" />
         </CardMedia>
         <CardText>
         {console.log('DID THIS GET HERE', this.props.stats)}
