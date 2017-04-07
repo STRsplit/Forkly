@@ -121,6 +121,7 @@ exports.addRecipe = function (req, res) {
     .then(newOrigRecipe => {
       return db.User.findByIdAndUpdate(req.user._id, {$push: {recipes: currentRecipe._id, originalRecipes: originalRecipe._id}})
         .then((user) => {
+          console.log('currentRecipe._id', currentRecipe._id, 'originalRecipes', originalRecipe._id)
           res.status(200).send(currentRecipe._id)
         })
       })

@@ -9,6 +9,7 @@ const { headline } = style
 
 /* * * CHANGED FORKED AND USERS RECIPES ALL TO ORDERED TO ENSURE COMPONENT RENDERED -> COULD NOT MAP OVER USERS OR FORKED AS THERE IS NO SUITABLE DATA * * */
 const TabBarUser = ({ state, setStateThroughProps, setRecipeState, setTabView, recipeStats, renderSelectedRecipe }) => {
+
   const { orderedRecipes, forkedRecipes, usersRecipes } = recipeStats
 
   const handleChange = (event, index, selectedView) => {
@@ -16,11 +17,12 @@ const TabBarUser = ({ state, setStateThroughProps, setRecipeState, setTabView, r
     // or event.value?
   }
   const handleTabChange = (event) => {
-    setTabView(event.value)
+    console.log('TABBBBBB SHANGE VALUE', event, state.selectedView)
+    setTabView(event)
     // or event.value?
   }
 
-
+ 
   return (
     <Tabs
       value={state.selectedView}
