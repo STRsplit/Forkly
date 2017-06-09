@@ -1,56 +1,67 @@
 const style = {
   container: {
-    marginTop: '5%',
-    display: 'block'
+    marginTop: '56px',
+    flexBasis: '100%'
   },
   dashboard: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: '3% 10%',
+    padding: '3%',
+    flexWrap: 'wrap',
     alignItems: 'center'
   },
 
   leftDashboard: {
-    flexDirection: 'column',
-    width: '30%',
-    padding: '0 20px'
+    display: 'flex',
+    // flexDirection: 'column',
+    padding: '5px',
+    flexShrink: 0.3,
+    alignItems: 'center'
   },
 
   rightDashboard: {
-    flexDirection: 'column',
-    width: '70%',
-    padding: '0 20px',
-    wrap: 'nowrap',
-    float: 'right'
+    padding: '5px',
+    display: 'flex',
+    flexGrow: .8,
+    flexDirection: 'row'
   },
+
+  rightDashboardInner: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexGrow: 1
+  },
+
   statsBar: {
     zDepth: '1',
     width: '100%',
-    margin: 20,
-    display: 'table',
     padding: '2% 5%',
-    borderSpacing: '10px',
-    tableLayout: 'fixed',
-    
+    display: 'flex',
+    justifyContent: 'space-around'
   },
 
   profilePic: {
     zDepth: '1',
-    height: 100,
-    width: 100,
-    margin: 20,
-    textAlign: 'center',
-    display: 'inline-block'
+    backgroundImage: "url('https://a3-images.myspacecdn.com/images03/1/240e42b5d9ce48a78983961e7fcb3c39/600x600.jpg')",
+    borderRadius: '5%',
+    width: '150px',
+    height: '150px',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'
   },
 
   statDetail: {
     zDepth: '0',
     textAlign: 'center',
-    display: 'table-cell',
-        // justifyContent: 'space-around',
     padding: '2% 5%',
-    wordWrap: 'break-word'
+    textOverflow: 'ellipsis',
+    wordWrap: 'wrap',
+    // whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    display: 'block',
+    width: '30%'
   }
 }
 

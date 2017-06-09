@@ -30,7 +30,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      username: null,
+      username: 'e',
       currentRecipe: [],
       /* Profile Page User */
       userID: '',
@@ -58,7 +58,7 @@ class App extends Component {
   }
 
   session () {
-    return true
+    return false
     /* * change to true or false to 'mimic' a session * */
     /* * should return true if session is active else return false * */
   }
@@ -104,6 +104,9 @@ class App extends Component {
 
   renderComponentWithProps (component) {
     console.log('COMPONENT called', component)
+    if(!this.state.username){
+      return <Redirect to='/'/>
+    }
     if (component === 'ProfilePageUser') {
       return <ProfilePageUser setTabView={this.setTabView} state={this.state} setStateThroughProps={this.setStateThroughProps} setRecipeState={this.setRecipeState} renderSelectedRecipe={this.renderSelectedRecipe} />
     }
@@ -125,16 +128,18 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <div>
+        <div id="pageContainer" style={{}}>
           <MainPageUser />
-          <Route exact path='/' render={this.checkSession.bind(this)} />          
-          <Route path='/welcome' component={Main} />
-          <Route exact path='/home' render={() => this.renderComponentWithProps('ProfilePageUser')} />
-          <Route path='/home/viewrecipe' render={() => this.renderComponentWithProps('ViewSelectedRecipe')} />
-           <Route path='/home/add' render={() => this.renderComponentWithProps('AddRecipe')} />
-          <Route exact path='/home/search' render={() => this.renderComponentWithProps('SearchRecipes')} />
-          <Route path='/forkly' component={MainPageNonUser} />
-          <Route path='/login' component={LoginPage} />
+          <div id="mainContent" style={{display: 'flex', height: '100vh', width: '100%'}}>
+            <Route exact path='/' render={this.checkSession.bind(this)} />          
+            <Route path='/welcome' component={Main} />
+            <Route exact path='/home' render={() => this.renderComponentWithProps('ProfilePageUser')} />
+            <Route path='/home/viewrecipe' render={() => this.renderComponentWithProps('ViewSelectedRecipe')} />
+             <Route path='/home/add' render={() => this.renderComponentWithProps('AddRecipe')} />
+            <Route exact path='/home/search' render={() => this.renderComponentWithProps('SearchRecipes')} />
+            
+            <Route path='/login' render={() => <LoginPage username={this.state.username} />} />
+            </div>
         </div>
       </Router>
     )

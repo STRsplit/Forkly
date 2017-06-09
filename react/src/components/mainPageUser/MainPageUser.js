@@ -57,7 +57,6 @@ class MainPageUser extends Component {
               <IconButton tooltip='Open menu' onClick={this.handleToggle.bind(this)}>
                 <ActionHome />
               </IconButton>
-              <ToolbarSeparator />
               <ToolbarTitle text='Forkly' />
             </ToolbarGroup>
           </Toolbar>

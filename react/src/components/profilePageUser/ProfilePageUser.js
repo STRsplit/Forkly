@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton'
 import Paper from 'material-ui/Paper'
 import Badge from 'material-ui/Badge'
 
-const { dashboard, leftDashboard, rightDashboard, statsBar, profilePic, statDetail, container } = style
+const { dashboard, leftDashboard, rightDashboard, rightDashboardInner, statsBar, profilePic, statDetail, container } = style
 
 /* * state, setStateThroughProps are passed in as Props * */
 /* * state = {userID, userName, recipes, originalRecipes} * */
@@ -24,7 +24,6 @@ class ProfilePageUser extends Component {
   componentDidMount () {
     axios.get('/api/users/user')
     .then(result => {
-      console.log('ProfilePageUser axios call result.data: ', result.data)
       const { name, _id, recipes, originalRecipes } = result.data
       this.props.setStateThroughProps(null, {
         userID: _id,
@@ -39,7 +38,7 @@ class ProfilePageUser extends Component {
 
   render() {
     const { state, setRecipeState, setTabView, setStateThroughProps, renderSelectedRecipe } = this.props
-    const profilePic = 'https://a3-images.myspacecdn.com/images03/1/240e42b5d9ce48a78983961e7fcb3c39/600x600.jpg'
+    // const profilePic = 'https://a3-images.myspacecdn.com/images03/1/240e42b5d9ce48a78983961e7fcb3c39/600x600.jpg'
     const orderedRecipes = []
     const forkedRecipes = []
     const usersRecipes = []
@@ -54,11 +53,11 @@ class ProfilePageUser extends Component {
         <div style={dashboard}>
           <div style={leftDashboard}>
             <h2>{state.userID}</h2>
-            <div style={{backgroundImage: `url('${profilePic}')`, borderRadius: '50%', width: '200px', height:'200px'}}>
+            <div style={profilePic}>
             </div>
           </div>
           <div style={rightDashboard}>
-            <div style={rightDashboard}>
+            <div style={rightDashboardInner}>
               <Paper style={statsBar} >
 
                 <Paper style={statDetail}>

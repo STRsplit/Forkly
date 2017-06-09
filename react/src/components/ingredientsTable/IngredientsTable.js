@@ -73,7 +73,6 @@ class AddIngredientsTable extends Component {
     let { name, ingredients, img, directions, forking } = this.props.stats
     const recipeImg = img === undefined ? this.state.recipeImage : img
     const recipeImage = recipeImg === '' ? '../../assets/images/placeHolderIMG.jpg' : recipeImg
-    console.log('RECIPE IMAGE!!!!!!!!!', recipeImage);
 
     const isDisabled = this.props.isDisabled
     const fieldType = isDisabled ? 'ReadOnly' : 'TextField'

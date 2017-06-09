@@ -5,7 +5,12 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-
+const style = {
+    backgroundColor: 'red',
+    height: '100vh',
+    display: 'flex',
+    flexGrow: 1
+}
 class LoginPage extends Component {
   constructor (props) {
     super(props)
@@ -60,9 +65,10 @@ class LoginPage extends Component {
   }
 
   render () {
+    console.log('got here')
     if (this.props.username === null) {
       return (
-        <div>
+        <div style={style}>
           <a className='loginFacebook' href='/auth/facebook'>Login with Facebook</a>
           <Link to='signup'>Sign up for an account</Link>
         </div>

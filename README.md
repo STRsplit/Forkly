@@ -3,7 +3,7 @@
 
 ## Description
 
-> lamborghini mercy
+> Version control for recipe sharing.
 
 ## Installing Dependencies
 

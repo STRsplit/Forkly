@@ -56,7 +56,6 @@ class AddRecipe extends Component {
 
     axios.post(reqRoute, storeRecipe)
       .then(recipeId => {
-        console.log('return value Recipe Saved', recipeId)
         // router.history.push('/recipe/' + recipeId)
       })
       .catch(error => {
