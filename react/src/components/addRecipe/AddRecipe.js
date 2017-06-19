@@ -114,7 +114,6 @@ class AddRecipe extends Component {
       <div style={recipeContainer}>
 
         <h1>{recipeHeader}</h1>
-        <form>
 
           <IngredientsTable
             handleRecipeSave={this.handleRecipeSave}
@@ -126,7 +125,6 @@ class AddRecipe extends Component {
             styleProps={styleProps}
           />
 
-        </form>
       </div>
     )
   }

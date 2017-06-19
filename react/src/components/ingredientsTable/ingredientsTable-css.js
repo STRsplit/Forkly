@@ -1,15 +1,16 @@
 const style = {
   containerStyle: {
     display: 'flex',
-    flexFlow: 'column nowrap',
+    flexFlow: 'row wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
     fontFamily: 'Roboto, sans-serif'
   },
   formContainer: {
     margin: 'auto',
-    width: '60%',
-    display: 'block',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     padding: '10px',
     margin: '5% auto',
     clear: 'both'

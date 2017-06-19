@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router-dom'
-import { FlatButton, Dialog } from 'material-ui'
+import { FlatButton, Dialog, TextField } from 'material-ui'
 
 import style from './navMain-css'
-
+import secondStyle from '../ingredientsTable/ingredientsTable-css'
 const { container, title, button } = style
+
+const { underlineStyle, floatingLabelStyle, floatingLabelFocusStyle } = secondStyle
 
 
 class NavMain extends Component {
@@ -24,12 +26,17 @@ class NavMain extends Component {
 
   handleOpen(){
     this.setState({open: true});
-  };
+  }
 
   handleClose(){
     this.setState({open: false});
-  };
+  }
     
+  handleChange (event) {
+    let value = event.target.value
+    let field = event.target.name
+    this.props.handleChange(value, name);
+  }
 
   render () {
   
@@ -48,6 +55,7 @@ class NavMain extends Component {
       />,
     ];
 
+    let { username } = this.props.stats
     return (
       <div style={container}>
         <h1 style={title}>forkly</h1>
@@ -60,7 +68,16 @@ class NavMain extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          {}
+          <TextField multiLine name='username' defaultValue={username} onChange={this.handleChange}
+            floatingLabelText='Username'
+            floatingLabelStyle={floatingLabelStyle}
+            floatingLabelFocusStyle={floatingLabelFocusStyle}
+            /><br/>
+            <TextField multiLine name='userPW' onChange={this.handleChange}
+            floatingLabelText='Password'
+            floatingLabelStyle={floatingLabelStyle}
+            floatingLabelFocusStyle={floatingLabelFocusStyle}
+            />
         </Dialog>
         
       </div>

@@ -10,15 +10,16 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
   from 'material-ui/Table'
 import style from './ingredientsTable-css'
 import {orange500, blue500} from 'material-ui/styles/colors'
-import RaisedButton from 'material-ui/RaisedButton'
-import SelectField from 'material-ui/SelectField'
-import FlatButton from 'material-ui/FlatButton'
-import TextField from 'material-ui/TextField'
-import MenuItem from 'material-ui/MenuItem'
-import Toggle from 'material-ui/Toggle'
-import Dialog from 'material-ui/Dialog'
+import { RaisedButton, SelectField, FlatButton, TextField, MenuItem, Toggle, Dialog } from 'material-ui'
 
-const { containerStyle, formContainer, directionsBox, ingredientsGrid, errorStyle, underlineStyle, floatingLabelStyle, floatingLabelFocusStyle, propContainer, propToggleHeader, ingredientsContainer, ingredientsHeader, ingredientsRow, colHeader, fabButton, uploadButton, uploadInput, aligner, headerH2, headerContainer, recipeNameBox, imageLocal, recipeName, buttonStyle } = style
+
+const { containerStyle, formContainer, directionsBox, 
+  ingredientsGrid, errorStyle, underlineStyle, 
+  floatingLabelStyle, floatingLabelFocusStyle, 
+  propContainer, propToggleHeader, ingredientsContainer,
+   ingredientsHeader, ingredientsRow, colHeader, fabButton,
+    uploadButton, uploadInput, aligner, headerH2, headerContainer,
+     recipeNameBox, imageLocal, recipeName, buttonStyle } = style
 
 class AddIngredientsTable extends Component {
   constructor (props) {
@@ -134,7 +135,7 @@ class AddIngredientsTable extends Component {
             headerColumns={headers}
           />
         </div>
-        <div style={{margin: '0 auto'}}>
+        <div>
           
           <TextField multiLine name='recipeDirections' defaultValue={directions} disabled={isDisabled} style={directionsBox} onChange={this.handleChange}
             floatingLabelText='Directions'
@@ -151,46 +152,3 @@ class AddIngredientsTable extends Component {
 }
 
 export default AddIngredientsTable
-
-/* <Table
-          height={this.props.styleProps.height}
-          fixedHeader={this.props.styleProps.fixedHeader}
-          fixedFooter={this.props.styleProps.fixedFooter}
-          selectable={this.props.styleProps.selectable}
-          multiSelectable={this.props.styleProps.multiSelectable}
-        >
-          <TableHeader
-            displaySelectAll={this.props.styleProps.showCheckboxes}
-            adjustForCheckbox={this.props.styleProps.showCheckboxes}
-            enableSelectAll={this.props.styleProps.enableSelectAll}
-          >
-            <TableRow>
-              <TableHeaderColumn colSpan="4" style={styles.ingredientsHeader}>
-                Ingredients
-              </TableHeaderColumn>
-            </TableRow>
-            <TableRow style={styles.ingredientsRow}>
-              <TableHeaderColumn tooltip="Quantity">Quantity</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Units">Units</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Ingredient">Ingredient</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Remove Ingredient">Remove Ingredient</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody
-            displayRowCheckbox={this.props.styleProps.showCheckboxes}
-            deselectOnClickaway={this.props.styleProps.deselectOnClickaway}
-            showRowHover={this.props.styleProps.showRowHover}
-            stripedRows={this.props.styleProps.stripedRows}
-          >
-            {ingredients.map( (ingredient, index) => (
-              <TableRow key={index}>
-                <TableRowColumn readonly="false">{ingredient.quantity}</TableRowColumn>
-                <TableRowColumn readonly="false">{ingredient.units}</TableRowColumn>
-                <TableRowColumn readonly="false">{ingredient.ingredient}</TableRowColumn>
-                <TableRowColumn readonly="true"></TableRowColumn>
-              </TableRow>
-              ))}
-          </TableBody>
-          <TableFooter>
-          </TableFooter>
-        </Table> */

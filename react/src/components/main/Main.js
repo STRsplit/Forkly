@@ -26,7 +26,7 @@ class Main extends Component {
     return (
       <div style={background}>
           <div style={style.menu}>
-            <NavMain />
+            <NavMain stats={this.props.stats} handleChange={this.props.handleChange}/>
           </div>
       </div>
     )

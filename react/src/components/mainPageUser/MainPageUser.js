@@ -13,13 +13,8 @@ import AddRecipe from '../addRecipe/AddRecipe'
  */
 import style from './mainPageUser-css'
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar'
+import { FlatButton, IconButton, MenuItem, FontIcon, Drawer, AppBar } from 'material-ui'
 import ActionHome from 'material-ui/svg-icons/action/home'
-import FlatButton from 'material-ui/FlatButton'
-import IconButton from 'material-ui/IconButton'
-import MenuItem from 'material-ui/MenuItem'
-import FontIcon from 'material-ui/FontIcon'
-import Drawer from 'material-ui/Drawer'
-import AppBar from 'material-ui/AppBar'
 /**
  * Mock Data
  */

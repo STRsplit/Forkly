@@ -25,6 +25,19 @@ import MockData from './components/mainPageUser/MockData'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
+const style = {
+  // pageContainer: {
+  //   display: 'flex',
+  //   height: '100vh',
+  //   width: '100vw'
+  // },
+  mainContent: {
+    width: '100%',
+    display: 'flex'
+  }
+
+}
+
 
 class App extends Component {
   constructor (props) {
@@ -126,16 +139,17 @@ class App extends Component {
   }
 
   render () {
+    let { pageContainer, mainContent} = style;
     return (
       <Router>
-        <div id="pageContainer" style={{}}>
+        <div>
           <MainPageUser />
-          <div id="mainContent" style={{display: 'flex', height: '100vh', width: '100%'}}>
+          <div style={mainContent}>
             <Route exact path='/' render={this.checkSession.bind(this)} />          
-            <Route path='/welcome' component={Main} />
+            <Route path='/welcome' render={() => <Main handleChange={this.setStateThroughProps} stats={this.state} />} />
             <Route exact path='/home' render={() => this.renderComponentWithProps('ProfilePageUser')} />
             <Route path='/home/viewrecipe' render={() => this.renderComponentWithProps('ViewSelectedRecipe')} />
-             <Route path='/home/add' render={() => this.renderComponentWithProps('AddRecipe')} />
+            <Route path='/home/add' render={() => this.renderComponentWithProps('AddRecipe')} />
             <Route exact path='/home/search' render={() => this.renderComponentWithProps('SearchRecipes')} />
             
             <Route path='/login' render={() => <LoginPage username={this.state.username} />} />

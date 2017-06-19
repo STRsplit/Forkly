@@ -1,7 +1,9 @@
 const style = {
   recipeContainer: {
     margin: 'auto',
-    width: '100%'
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap'
   }
 }
 
