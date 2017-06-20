@@ -12,7 +12,8 @@ import $ from 'jquery'
 import Main from './components/main/Main'
 import MainPageUser from './components/mainPageUser/MainPageUser'
 import MainPageNonUser from './components/mainPageNonUser/MainPageNonUser'
-import LoginPage from './components/loginPage/LoginPage'
+import Login from './components/loginPage/LoginPage'
+
 import AddRecipe from './components/addRecipe/AddRecipe'
 import ProfilePageUser from './components/profilePageUser/ProfilePageUser'
 import SearchRecipes from './components/searchRecipes/SearchRecipes'
@@ -43,7 +44,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      username: 'e',
+      username: '',
       currentRecipe: [],
       /* Profile Page User */
       userID: '',
@@ -81,7 +82,7 @@ class App extends Component {
       return <Redirect to='/home/' />
     } else {
       console.log('no session')
-      return <Redirect to='/welcome' />
+      return <Redirect to='/login' />
     }
   }
 
@@ -108,9 +109,6 @@ class App extends Component {
     })
     .catch(error => {
       if (error.response) {
-        console.log(error.response.data)
-        console.log(error.response.status)
-        console.log(error.response.headers)
       }
     })
   }
@@ -120,6 +118,7 @@ class App extends Component {
     if(!this.state.username){
       return <Redirect to='/'/>
     }
+
     if (component === 'ProfilePageUser') {
       return <ProfilePageUser setTabView={this.setTabView} state={this.state} setStateThroughProps={this.setStateThroughProps} setRecipeState={this.setRecipeState} renderSelectedRecipe={this.renderSelectedRecipe} />
     }
@@ -151,8 +150,7 @@ class App extends Component {
             <Route path='/home/viewrecipe' render={() => this.renderComponentWithProps('ViewSelectedRecipe')} />
             <Route path='/home/add' render={() => this.renderComponentWithProps('AddRecipe')} />
             <Route exact path='/home/search' render={() => this.renderComponentWithProps('SearchRecipes')} />
-            
-            <Route path='/login' render={() => <LoginPage username={this.state.username} />} />
+            <Route path='/login' render={() => <Login username={this.state.username} />} />
             </div>
         </div>
       </Router>

@@ -4,7 +4,7 @@ import { FlatButton, Dialog, TextField } from 'material-ui'
 
 import style from './navMain-css'
 import secondStyle from '../ingredientsTable/ingredientsTable-css'
-const { container, title, button } = style
+const { container, title, button, facebookButton, signUpForm } = style
 
 const { underlineStyle, floatingLabelStyle, floatingLabelFocusStyle } = secondStyle
 
@@ -62,22 +62,35 @@ class NavMain extends Component {
         <FlatButton labelStyle={button} style={button} label='Join' onTouchTap={this.handleOpen}/>
         <FlatButton labelStyle={button} style={button}  label='Log In' onTouchTap={this.handleOpen}/>
         <Dialog
-          title="Dialog With Actions"
+          title="Login / Signup"
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
+          contentStyle={{maxWidth:'600px'}}
         >
-          <TextField multiLine name='username' defaultValue={username} onChange={this.handleChange}
-            floatingLabelText='Username'
-            floatingLabelStyle={floatingLabelStyle}
-            floatingLabelFocusStyle={floatingLabelFocusStyle}
-            /><br/>
-            <TextField multiLine name='userPW' onChange={this.handleChange}
-            floatingLabelText='Password'
-            floatingLabelStyle={floatingLabelStyle}
-            floatingLabelFocusStyle={floatingLabelFocusStyle}
-            />
+          <div className="signup-form" >
+            <div>
+            <h2>Login or Signup w/ Facebook</h2>
+              <a className="facebook-button" href="/auth/facebook"><i className="fa fa-facebook-official" aria-hidden="true"></i>Login with Facebook</a>
+              <a className="facebook-button"><i className="fa fa-facebook-official" aria-hidden="true"></i>Login with Facebook</a>
+            </div>
+            <div>
+            </div>
+            <div className="login-details">
+            <h2>Login or Signup w/ Facebook</h2>
+              <TextField multiLine name='username' defaultValue={username} onChange={this.handleChange}
+                floatingLabelText='Username'
+                floatingLabelStyle={floatingLabelStyle}
+                floatingLabelFocusStyle={floatingLabelFocusStyle}
+                /><br/>
+              <TextField multiLine name='userPW' onChange={this.handleChange}
+                floatingLabelText='Password'
+                floatingLabelStyle={floatingLabelStyle}
+                floatingLabelFocusStyle={floatingLabelFocusStyle}
+              />
+            </div>
+          </div>
         </Dialog>
         
       </div>

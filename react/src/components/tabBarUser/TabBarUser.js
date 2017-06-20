@@ -17,12 +17,10 @@ const TabBarUser = ({ state, setStateThroughProps, setRecipeState, setTabView, r
     // or event.value?
   }
   const handleTabChange = (event) => {
-    console.log('TABBBBBB SHANGE VALUE', event, state.selectedView)
     setTabView(event)
     // or event.value?
   }
 
- 
   return (
     <Tabs
       value={state.selectedView}

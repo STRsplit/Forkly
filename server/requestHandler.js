@@ -6,31 +6,9 @@ mongoose.Promise = require('bluebird')
 
 const db = require('../db/index.js')
 
-// for Home Component - from searchRecipes function
-/** ORIGINAL **
-exports.searchRecipes = function(req, res) {
-  var searchTerm = req.body.searchTerm;
-
-  // regex -> allows the search to contain string instead of === string
-  // options i -> allows search to be case insensitive
-  db.Recipe.find({name:{'$regex' : searchTerm, '$options' : 'i'}})
-    .exec(function (err, recipe) {
-      if (err)
-        {
-          return err;
-        } else {
-        res.json(recipe);
-      }
-  });
-};
-** ORIGINAL **/
-
 exports.searchRecipes = function (req, res) {
-  var searchTerm = req.body.searchTerm
+  let { searchTerm } = req.body
 
-  // regex -> allows the search to contain string instead of === string
-  // options i -> allows search to be case insensitive
-  // queues for the most forked recipe
   db.Recipe.find({name: {'$regex': searchTerm, '$options': 'i'}})
     .sort({'forks': -1}).limit(1).populate('forks').exec()
       .then(recipe => {
@@ -70,7 +48,6 @@ exports.getUserRecipes = function (req, res) {
 
 exports.getUserData = function (req, res) {
   // remove this line when fb/login is back
-  req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' } 
   if (req.user) {
     db.User.findById(req.user._id)
     .limit(16) //change the limit if needed
@@ -89,26 +66,25 @@ exports.getUserData = function (req, res) {
 
 exports.addRecipe = function (req, res) {
   // remove this line when fb/login is back
-  req.user = {_id: '58dc02b1950849860eb4b167', _creator: '58dc02b1950849860eb4b167' }
   
   if (req.user) {
-    const currRecipe = req.body.currentRecipe
-    const origRecipe = req.body.sendOriginalRecipe
+    const { recipeName: name, ingredients, recipeDirections: directions, image } = req.body.currentRecipe
+    const {recipeName: ogName, ingredients: ogIngredients, recipeDirections: ogDirections, image: ogImage } = req.body.sendOriginalRecipe
 
     let currentRecipe = new db.Recipe({
-      name: currRecipe.recipeName,
-      ingredients: currRecipe.ingredients,
-      directions: currRecipe.recipeDirections,
-      _creator: req.user._id,
-      image: currRecipe.image // remove this line when multiple uploading of image to the client is done
+      name,
+      ingredients,
+      directions,
+      image,
+      _creator: _id,
     })
 
     let originalRecipe = new db.Recipe({
-      name: origRecipe.recipeName,
-      ingredients: origRecipe.ingredients,
-      directions: origRecipe.recipeDirections,
-      _creator: req.user._id,
-      image: origRecipe.image // remove this line when multiple uploading of image to the client is done
+      name: ogName,
+      ingredients: ogIngredients,
+      directions: ogDirections,
+      _creator: _id,
+      image: ogImage // remove this line when multiple uploading of image to the client is done
     })
     /* Uncomment when multiple uploading of image to the client is done */
     // convertToImageFile(currRecipe.image, currentRecipe._id)
@@ -134,11 +110,13 @@ exports.addRecipe = function (req, res) {
 
 
 exports.addForkedRecipe = function (req, res) {
+  let { original, recipe } = req.body
+
   if (req.user) {
 
-    db.Recipe.create(req.body.original)
+    db.Recipe.create(original)
       .then(origRecipe => {
-        return db.Recipe.create(req.body.recipe)
+        return db.Recipe.create(recipe)
           .then(updatedRecipe => {
             return db.User.findByIdAndUpdate(req.user._id, {$push: {recipes: updatedRecipe._id, originalRecipes: origRecipe._id}})
               .then((user) => {
