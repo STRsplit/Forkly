@@ -64,6 +64,40 @@ body {
    position:relative;
 }
 
+a.facebook-button {
+  display: block;
+  width: 200px;
+  line-height: 40px;
+  background-color: #3b5998;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+}
+.signup-form {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.signup-form div:first-child,
+.login-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 0 auto;
+}
+
+.login-details {
+  flex: .5 0 auto;
+}
+
 
 /*
   ========================================

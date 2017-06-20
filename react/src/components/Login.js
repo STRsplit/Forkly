@@ -66,7 +66,7 @@ class Login extends React.Component {
       return (
         <div>
           <a className='loginFacebook' href='/auth/facebook'>Login with Facebook</a>
-          <Link to='signup'>Sign up for an account</Link>
+          <Link to='/signup'>Sign up for an account</Link>
         </div>
       )
     } else {

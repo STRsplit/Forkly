@@ -48,6 +48,7 @@ app.use(passport.session())
 app.get('/auth/facebook',
   passport.authenticate('facebook')
 )
+/* * Need to revise this * */
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' })
   // function(req, res) {
@@ -57,14 +58,15 @@ app.get('/auth/facebook/callback',
 )
 
 /* * Verify login * */
-app.get('/verifylogin', (req, res) => {
+app.get('/verify/login', (req, res) => {
+  console.log('what', req.user)
   res.send(req.user)
 })
 
 /* * Handle logout * */
-app.get('/logout', function (req, res) {
+app.get('/logout', (req, res) => {
   req.logout()
-  // req.session.destroy();
+  req.session.destroy();
   res.redirect('/')
 })
 

@@ -12,7 +12,6 @@ class CardExampleWithAvatar extends Component {
     this.handleFork = this.handleFork.bind(this)
   }
   handleFork(){
-    console.log('HERRRREEEEEEEEE', this.state.recipe)
     const forkedRecipe = this.state.recipe
     this.props.onFork(forkedRecipe)
   }
@@ -35,7 +34,6 @@ class CardExampleWithAvatar extends Component {
           <img src={recipeIMG} width="240px" />
         </CardMedia>
         <CardText>
-        {console.log('DID THIS GET HERE', this.props.stats)}
            
         </CardText>
         <CardActions>

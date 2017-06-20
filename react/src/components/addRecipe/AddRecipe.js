@@ -70,11 +70,7 @@ class AddRecipe extends Component {
     // const name = target.name
     // const value = target.value
 
-    let newIngredients = {
-      quantity: updatedIngredient.quantity,
-      units: updatedIngredient.units,
-      ingredient: updatedIngredient.ingredient
-    }
+    let newIngredients = Object.assign({}, updatedIngredient);
 
     if (this.state.currentRecipe.ingredients[ingredientInd] === undefined) {
       this.setState((state) => {

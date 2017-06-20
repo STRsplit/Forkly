@@ -24,7 +24,25 @@ const style = {
     cursor: 'default',
     color: '#FFF',
     textAlign: 'center'
-  }
+  },
+  facebookButton: {
+    display: 'block',
+    width: '200px',
+    height: '40px',
+    backgroundColor: 'blue',
+    color: 'white',
+    borderRadius: '10px',
+    border: 'none',
+    padding: '5px',
+    margin: '5px'
+  },
+  signUpForm: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  
 }
 
 export default style

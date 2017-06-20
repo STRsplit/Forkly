@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import $ from 'jquery'
+import axios from 'axios'
 import {
   BrowserRouter as Router,
   Route,
@@ -9,14 +10,16 @@ const style = {
     backgroundColor: 'red',
     height: '100vh',
     display: 'flex',
-    flexGrow: 1
+    flexGrow: 1,
+    flexItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
 }
 class LoginPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      // username: '',
-      // password: ''
+      username: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -31,46 +34,33 @@ class LoginPage extends Component {
   handleSubmit (event) {
     event.preventDefault()
 
-    console.log('username: ', this.state.username)
 
     var user = {
-      username: this.state.username,
-      password: this.state.password
+      username: this.state.username
     }
-
-    $.ajax({
-      url: '/login',
-      type: 'POST',
-      // contentType: 'application/JSON',
-      data: JSON.stringify(user),
-      success: function (data) {
-        console.log('successful login post')
-      },
-      error: function (err) {
-        console.log('login error')
-      }
+    axios.post('/login')
+    .then(user => {
+      console.log(user)
+    })
+    .catch(err => {
+      console.log(err)
     })
   }
 
   componentDidMount () {
-    $.ajax({
-      url: '/verifylogin',
-      type: 'GET',
-      success: function (user) {
-        console.log('req.user object: ', user)
-      },
-      error: function (err) {
-      }
-    })
+    axios.get('/verify/login')
+    .then(user => console.log('user data:', user))
+    .catch(err => console.log('Error:', err))
   }
 
   render () {
-    console.log('got here')
-    if (this.props.username === null) {
+    if (this.props.username === '') {
       return (
         <div style={style}>
+        <div>
           <a className='loginFacebook' href='/auth/facebook'>Login with Facebook</a>
-          <Link to='signup'>Sign up for an account</Link>
+          <Link to='/signup'>Sign up for an account</Link>
+          </div>
         </div>
       )
     } else {
@@ -82,5 +72,10 @@ class LoginPage extends Component {
     }
   }
 }
+LoginPage.contextTypes = {
+  router: React.PropTypes.object,
+  Link: React.PropTypes.object
+}
+
 
 export default LoginPage

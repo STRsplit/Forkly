@@ -30,9 +30,7 @@ import ActionGrade from 'material-ui/svg-icons/action/grade'
         <Subheader inset={true}>Recipe Details</Subheader>
         <Divider />
         <List>
-        {console.log(recipeStats)}
           {  
-
             recipeStats.ingredients
             .map((detail, index) => {
               return (
