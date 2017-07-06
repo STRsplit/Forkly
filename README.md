@@ -3,7 +3,7 @@
 
 ## Description
 
-> Version control for recipe sharing.
+Version control for recipe sharing.
 
 ## Installing Dependencies
 
